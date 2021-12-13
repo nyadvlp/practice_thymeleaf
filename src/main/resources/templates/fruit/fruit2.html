@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <title>fruit2</title>
 </head>
+
+<script th:inline="javascript">
+	window.onload = function () {
+		let fruit1 = [[${fruit.fruit1}]];
+		alert(fruit1);
+		
+	// CDATA는 필수는 아닌 듯 하다
+	}
+
+</script>
+
 <body>
 
 	${...} 선택변수 표현식 <br/>
@@ -13,8 +24,26 @@
 		<span th:text="*{fruit3}"></span><br/>
 	</div>
 	
+	<br/>
+	<br/>
+	
 	#{...} 메세지 표현식 <br/> 
-	<span th:text="#{FRUIT.FRUIT4}"></span><br/>
+	<span th:text="#{content.fruit4}"></span>
+	<!-- 별도의 properties 파일을 통해 메세지를 호출하려면
+	반드시 application.properties 에서
+	message.properties 관련 설정을 해주어야 한다 -->
+	
+	<br/>
+	<br/>
+	
+	@{...} 링크 URL 표현식 <br/>
+	<a th:href="@{http://www.lifesemantics.kr}">lifesemantics</a><br/>
+		
+	<br/>
+	<br/>
+	
+	~{...} fragment 표현식 <br/>
+	<div th:insert="~{common/footer :: samplefooter}"></div>
 	
 </body>
 </html>
